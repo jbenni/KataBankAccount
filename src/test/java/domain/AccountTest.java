@@ -30,4 +30,18 @@ public class AccountTest {
         // Then
         assertThat(account.getBalance()).isEqualTo(expectedBalance);
     }
+
+    @Test
+    void should_account_have_balance_of_100_when_deposit_an_amount_of_50_twice() {
+        // Given
+        Account account = new Account();
+        var expectedBalance = new Balance(BigDecimal.valueOf(100));
+
+        // When
+        account.deposit(BigDecimal.valueOf(50));
+        account.deposit(BigDecimal.valueOf(50));
+
+        // Then
+        assertThat(account.getBalance()).isEqualTo(expectedBalance);
+    }
 }
