@@ -5,16 +5,24 @@ import java.util.Objects;
 
 public class Balance {
 
-    private BigDecimal value;
+    private BigDecimal amount;
 
     public Balance(BigDecimal value) {
-        this.value = value;
+        this.amount = value;
+    }
+
+    public Balance add(BigDecimal value) {
+        return new Balance(this.amount.add(value));
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Balance balance)) return false;
-        return Objects.equals(value, balance.value);
+        return Objects.equals(amount, balance.amount);
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
     }
 }
