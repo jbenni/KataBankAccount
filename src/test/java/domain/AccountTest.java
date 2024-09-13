@@ -23,9 +23,10 @@ public class AccountTest {
         // Given
         Account account = new Account();
         var expectedBalance = new Balance(BigDecimal.TEN);
+        var amount = new Amount(BigDecimal.TEN);
 
         // When
-        account.deposit(BigDecimal.TEN);
+        account.deposit(amount);
 
         // Then
         assertThat(account.getBalance()).isEqualTo(expectedBalance);
@@ -36,10 +37,10 @@ public class AccountTest {
         // Given
         Account account = new Account();
         var expectedBalance = new Balance(BigDecimal.valueOf(100));
-
+        var amount = new Amount(BigDecimal.valueOf(50));
         // When
-        account.deposit(BigDecimal.valueOf(50));
-        account.deposit(BigDecimal.valueOf(50));
+        account.deposit(amount);
+        account.deposit(amount);
 
         // Then
         assertThat(account.getBalance()).isEqualTo(expectedBalance);

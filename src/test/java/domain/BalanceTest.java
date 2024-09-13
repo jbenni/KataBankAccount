@@ -13,9 +13,10 @@ class BalanceTest {
         // Given
         Balance balance = new Balance(BigDecimal.valueOf(50));
         var expectedBalance = new Balance(BigDecimal.valueOf(100));
+        var amount = new Amount(BigDecimal.valueOf(50));
 
         // When
-        Balance newBalance = balance.add(BigDecimal.valueOf(50));
+        Balance newBalance = balance.add(amount);
 
         // Then
         assertEquals(expectedBalance, newBalance);

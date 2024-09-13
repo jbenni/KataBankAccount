@@ -10,7 +10,7 @@ public class Account {
         this.balance = new Balance(BigDecimal.ZERO);
     }
 
-    public void deposit(BigDecimal amount) {
+    public void deposit(Amount amount) {
         this.balance = this.balance.add(amount);
     }
 
