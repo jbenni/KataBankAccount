@@ -17,4 +17,17 @@ public class AccountTest {
         // Then
         assertThat(account.getBalance()).isEqualTo(expectedBalance);
     }
+
+    @Test
+    void should_new_account_have_balance_of_10_when_deposit_an_amount_of_10() {
+        // Given
+        Account account = new Account();
+        var expectedBalance = new Balance(BigDecimal.TEN);
+
+        // When
+        account.deposit(BigDecimal.TEN);
+
+        // Then
+        assertThat(account.getBalance()).isEqualTo(expectedBalance);
+    }
 }

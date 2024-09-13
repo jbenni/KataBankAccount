@@ -13,4 +13,8 @@ public class Account {
     public Balance getBalance() {
         return this.balance;
     }
+
+    public void deposit(BigDecimal amount) {
+
+    }
 }
