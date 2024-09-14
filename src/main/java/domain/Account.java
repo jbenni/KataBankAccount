@@ -5,9 +5,11 @@ import java.math.BigDecimal;
 public class Account {
 
     private Balance balance;
+    private final OperationHistory operationHistory;
 
-    public Account() {
+    public Account(OperationHistory operationHistory) {
         this.balance = new Balance(BigDecimal.ZERO);
+        this.operationHistory = operationHistory;
     }
 
     public void deposit(Amount amount) {
@@ -20,5 +22,9 @@ public class Account {
 
     public Balance getBalance() {
         return this.balance;
+    }
+
+    public OperationHistory getOperationHistory() {
+        return operationHistory;
     }
 }
