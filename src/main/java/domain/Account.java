@@ -1,6 +1,7 @@
 package domain;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 public class Account {
 
@@ -14,10 +15,12 @@ public class Account {
 
     public void deposit(Amount amount) {
         this.balance = this.balance.add(amount);
+        this.operationHistory.add(LocalDateTime.now(), OperationType.DEPOSIT, amount, this.balance);
     }
 
     public void withdraw(Amount amount) {
         this.balance = this.balance.substract(amount);
+        this.operationHistory.add(LocalDateTime.now(), OperationType.WITHDRAWAL, amount, this.balance);
     }
 
     public Balance getBalance() {

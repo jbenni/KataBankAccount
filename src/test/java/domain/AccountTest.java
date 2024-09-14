@@ -1,6 +1,8 @@
 package domain;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import java.math.BigDecimal;
 
@@ -76,18 +78,21 @@ public class AccountTest {
         assertThat(account.getBalance()).isEqualTo(expectedBalance);
     }
 
-    @Test
-    void should_account_have_2_operations_in_history_when_deposit_then_withdraw() {
+    @ParameterizedTest
+    @EnumSource(value = OperationType.class)
+    void should_account_have_deposit_and_withdraw_operation_after_a_deposit_and_a_withdrawal(OperationType operationType) {
         // Given
         Account account = new Account(new OperationHistory());
         Amount amount = new Amount(BigDecimal.TEN);
-        var expectedOperationsSize = 2;
 
         // When
         account.deposit(amount);
         account.withdraw(amount);
 
         // Then
-        assertThat(account.getOperationHistory().getOperations().size()).isEqualTo(expectedOperationsSize);
+        assertThat(account.getOperationHistory().getOperations())
+                .hasSize(2)
+                .extracting(Operation::getOperationType)
+                .containsExactlyInAnyOrder(OperationType.DEPOSIT, OperationType.WITHDRAWAL);
     }
 }
