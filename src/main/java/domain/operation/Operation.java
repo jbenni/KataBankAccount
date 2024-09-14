@@ -1,4 +1,7 @@
-package domain;
+package domain.operation;
+
+import domain.Amount;
+import domain.Balance;
 
 import java.time.LocalDateTime;
 

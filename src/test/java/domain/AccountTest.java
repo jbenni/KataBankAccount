@@ -1,5 +1,9 @@
 package domain;
 
+import domain.account.Account;
+import domain.operation.Operation;
+import domain.operation.OperationHistory;
+import domain.operation.OperationType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

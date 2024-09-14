@@ -1,4 +1,8 @@
-package domain;
+package domain.operation;
+
+import domain.Amount;
+import domain.Balance;
+import domain.DateProvider;
 
 import java.util.ArrayList;
 import java.util.List;

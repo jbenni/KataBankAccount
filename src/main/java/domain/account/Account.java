@@ -1,7 +1,11 @@
-package domain;
+package domain.account;
+
+import domain.Amount;
+import domain.Balance;
+import domain.operation.OperationHistory;
+import domain.operation.OperationType;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 public class Account {
 
