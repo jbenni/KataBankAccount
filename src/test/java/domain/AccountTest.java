@@ -78,9 +78,8 @@ public class AccountTest {
         assertThat(account.getBalance()).isEqualTo(expectedBalance);
     }
 
-    @ParameterizedTest
-    @EnumSource(value = OperationType.class)
-    void should_account_have_deposit_and_withdraw_operation_after_a_deposit_and_a_withdrawal(OperationType operationType) {
+    @Test
+    void should_account_have_deposit_and_withdraw_operation_after_a_deposit_and_a_withdrawal() {
         // Given
         Account account = new Account(new OperationHistory());
         Amount amount = new Amount(BigDecimal.TEN);
