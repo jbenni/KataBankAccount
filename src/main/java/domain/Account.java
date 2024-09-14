@@ -15,12 +15,12 @@ public class Account {
 
     public void deposit(Amount amount) {
         this.balance = this.balance.add(amount);
-        this.operationHistory.add(LocalDateTime.now(), OperationType.DEPOSIT, amount, this.balance);
+        this.operationHistory.add(OperationType.DEPOSIT, amount, this.balance);
     }
 
     public void withdraw(Amount amount) {
         this.balance = this.balance.substract(amount);
-        this.operationHistory.add(LocalDateTime.now(), OperationType.WITHDRAWAL, amount, this.balance);
+        this.operationHistory.add(OperationType.WITHDRAWAL, amount, this.balance);
     }
 
     public Balance getBalance() {
