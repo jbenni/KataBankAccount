@@ -38,9 +38,24 @@ public class AccountTest {
         Account account = new Account();
         var expectedBalance = new Balance(BigDecimal.valueOf(100));
         var amount = new Amount(BigDecimal.valueOf(50));
+
         // When
         account.deposit(amount);
         account.deposit(amount);
+
+        // Then
+        assertThat(account.getBalance()).isEqualTo(expectedBalance);
+    }
+
+    @Test
+    void should_new_account_have_balance_of_50_when_deposit_100_and_withdraw_10() {
+        // Given
+        Account account = new Account();
+        var expectedBalance = new Balance(BigDecimal.valueOf(-50));
+        var withdrawAmount = new Amount(BigDecimal.valueOf(50));
+
+        // When
+        account.withdraw(withdrawAmount);
 
         // Then
         assertThat(account.getBalance()).isEqualTo(expectedBalance);

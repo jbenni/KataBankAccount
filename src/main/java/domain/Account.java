@@ -17,4 +17,7 @@ public class Account {
     public Balance getBalance() {
         return this.balance;
     }
+
+    public void withdraw(Amount withdrawAmount) {
+    }
 }
