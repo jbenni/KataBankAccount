@@ -107,4 +107,16 @@ public class AccountTest {
                         tuple(OperationType.DEPOSIT, FIXED_LOCAL_DATE_TIME),
                         tuple(OperationType.WITHDRAWAL, FIXED_LOCAL_DATE_TIME));
     }
+
+    @Test
+    void should_print_all_operations_history() {
+        // Given
+        var expectedHistory = "";
+
+        // When
+        var history = account.print();
+
+        // Then
+        assertThat(history).isEqualTo(expectedHistory);
+    }
 }

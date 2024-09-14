@@ -34,4 +34,8 @@ public class Account {
     public OperationHistory getOperationHistory() {
         return operationHistory;
     }
+
+    public String print() {
+        return "";
+    }
 }
