@@ -15,6 +15,10 @@ public class Balance {
         return new Balance(this.value.add(amount.getValue()));
     }
 
+    public Balance substract(Amount amount) {
+        return new Balance(this.value.subtract(amount.getValue()));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

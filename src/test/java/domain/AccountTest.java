@@ -48,13 +48,28 @@ public class AccountTest {
     }
 
     @Test
-    void should_new_account_have_balance_of_50_when_deposit_100_and_withdraw_10() {
+    void should_new_account_have_balance_of_minus_50_when_withdraw_50() {
         // Given
         Account account = new Account();
         var expectedBalance = new Balance(BigDecimal.valueOf(-50));
         var withdrawAmount = new Amount(BigDecimal.valueOf(50));
 
         // When
+        account.withdraw(withdrawAmount);
+
+        // Then
+        assertThat(account.getBalance()).isEqualTo(expectedBalance);
+    }
+
+    @Test
+    void should_account_have_balance_of_minus_100_when_withdraw_50_twice() {
+        // Given
+        Account account = new Account();
+        var expectedBalance = new Balance(BigDecimal.valueOf(-100));
+        var withdrawAmount = new Amount(BigDecimal.valueOf(50));
+
+        // When
+        account.withdraw(withdrawAmount);
         account.withdraw(withdrawAmount);
 
         // Then

@@ -22,4 +22,18 @@ class BalanceTest {
         assertEquals(expectedBalance, newBalance);
     }
 
+    @Test
+    void should_have_balance_0_when_substract_50_to_balance_50() {
+        // Given
+        Balance balance = new Balance(BigDecimal.valueOf(50));
+        var expectedBalance = new Balance(BigDecimal.ZERO);
+        var amount = new Amount(BigDecimal.valueOf(50));
+
+        // When
+        Balance newBalance = balance.substract(amount);
+
+        // Then
+        assertEquals(expectedBalance, newBalance);
+    }
+
 }

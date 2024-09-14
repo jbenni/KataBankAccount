@@ -14,10 +14,11 @@ public class Account {
         this.balance = this.balance.add(amount);
     }
 
-    public Balance getBalance() {
-        return this.balance;
+    public void withdraw(Amount amount) {
+        this.balance = this.balance.substract(amount);
     }
 
-    public void withdraw(Amount withdrawAmount) {
+    public Balance getBalance() {
+        return this.balance;
     }
 }
