@@ -4,6 +4,7 @@ import domain.Amount;
 import domain.Balance;
 import domain.operation.OperationHistory;
 import domain.operation.OperationType;
+import domain.statement.StatementPrinter;
 
 import java.math.BigDecimal;
 
@@ -11,10 +12,12 @@ public class Account {
 
     private Balance balance;
     private final OperationHistory operationHistory;
+    private final StatementPrinter statementPrinter;
 
-    public Account(OperationHistory operationHistory) {
+    public Account(OperationHistory operationHistory, StatementPrinter statementPrinter) {
         this.balance = new Balance(BigDecimal.ZERO);
         this.operationHistory = operationHistory;
+        this.statementPrinter = statementPrinter;
     }
 
     public void deposit(Amount amount) {
@@ -36,6 +39,6 @@ public class Account {
     }
 
     public String print() {
-        return "";
+        return statementPrinter.print(operationHistory.getOperations());
     }
 }

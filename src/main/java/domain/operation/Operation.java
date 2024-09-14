@@ -33,4 +33,14 @@ public class Operation {
     public Balance getBalance() {
         return balance;
     }
+
+    @Override
+    public String toString() {
+        return "Operation{" +
+                "date=" + date +
+                ", operationType=" + operationType +
+                ", amount=" + amount +
+                ", balance=" + balance +
+                '}';
+    }
 }

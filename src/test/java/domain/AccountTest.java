@@ -4,6 +4,7 @@ import domain.account.Account;
 import domain.operation.Operation;
 import domain.operation.OperationHistory;
 import domain.operation.OperationType;
+import domain.statement.ConsoleStatementPrinter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,13 +19,15 @@ public class AccountTest {
     private OperationHistory operationHistory;
     private FakeDateProvider fakeDateProvider;
     private Account account;
+    private ConsoleStatementPrinter consoleStatementPrinter;
     private static final LocalDateTime FIXED_LOCAL_DATE_TIME = LocalDateTime.of(2024, 9, 14, 12, 0);
 
     @BeforeEach
     void setUp() {
         fakeDateProvider = new FakeDateProvider();
         operationHistory = new OperationHistory(fakeDateProvider);
-        account = new Account(operationHistory);
+        consoleStatementPrinter = new ConsoleStatementPrinter();
+        account = new Account(operationHistory, consoleStatementPrinter);
     }
 
     @Test
@@ -111,7 +114,13 @@ public class AccountTest {
     @Test
     void should_print_all_operations_history() {
         // Given
-        var expectedHistory = "";
+        account.deposit(new Amount(BigDecimal.TEN));
+        account.withdraw(new Amount(BigDecimal.TEN));
+
+        var sb = new StringBuilder();
+        account.getOperationHistory().getOperations().forEach(sb::append);
+
+        var expectedHistory = sb.toString();
 
         // When
         var history = account.print();
