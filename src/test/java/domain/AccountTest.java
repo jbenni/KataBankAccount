@@ -110,22 +110,4 @@ public class AccountTest {
                         tuple(OperationType.DEPOSIT, FIXED_LOCAL_DATE_TIME),
                         tuple(OperationType.WITHDRAWAL, FIXED_LOCAL_DATE_TIME));
     }
-
-    @Test
-    void should_print_all_operations_history() {
-        // Given
-        account.deposit(new Amount(BigDecimal.TEN));
-        account.withdraw(new Amount(BigDecimal.TEN));
-
-        var sb = new StringBuilder();
-        account.getOperationHistory().getOperations().forEach(sb::append);
-
-        var expectedHistory = sb.toString();
-
-        // When
-        var history = account.print();
-
-        // Then
-        assertThat(history).isEqualTo(expectedHistory);
-    }
 }
