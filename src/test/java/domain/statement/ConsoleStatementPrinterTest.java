@@ -27,10 +27,10 @@ class ConsoleStatementPrinterTest {
     void should_print_operations_correctly() {
         // Given
         var amount = new Amount(BigDecimal.TEN);
-        var balanceAfterFirstDeposit = new Balance(BigDecimal.TEN);
+        var balanceAfterDeposit = new Balance(BigDecimal.TEN);
         var balanceAfterWithdrawal = new Balance(BigDecimal.ZERO);
 
-        Operation deposit = new Operation(fakeDateProvider.now(), OperationType.DEPOSIT, amount, balanceAfterFirstDeposit);
+        Operation deposit = new Operation(fakeDateProvider.now(), OperationType.DEPOSIT, amount, balanceAfterDeposit);
         Operation withdrawal = new Operation(fakeDateProvider.now().plusHours(2), OperationType.WITHDRAWAL, amount, balanceAfterWithdrawal);
 
         List<Operation> operations = List.of(deposit, withdrawal);
