@@ -72,30 +72,34 @@ public class AccountTest {
     }
 
     @Test
-    void should_new_account_have_balance_of_minus_50_when_withdraw_50() {
+    void should_new_account_have_balance_of_50_when_withdraw_50() {
         // Given
-        var expectedBalance = new Balance(BigDecimal.valueOf(-50));
+        var expectedBalance = new Balance(BigDecimal.valueOf(50));
         var withdrawAmount = new Amount(BigDecimal.valueOf(50));
+        var accountWithBalance100 = new Account(operationHistory, consoleStatementPrinter);
+        accountWithBalance100.deposit(new Amount(BigDecimal.valueOf(100)));
 
         // When
-        account.withdraw(withdrawAmount);
+        accountWithBalance100.withdraw(withdrawAmount);
 
         // Then
-        assertThat(account.getBalance()).isEqualTo(expectedBalance);
+        assertThat(accountWithBalance100.getBalance()).isEqualTo(expectedBalance);
     }
 
     @Test
-    void should_account_have_balance_of_minus_100_when_withdraw_50_twice() {
+    void should_account_have_balance_of_0_when_withdraw_50_twice() {
         // Given
-        var expectedBalance = new Balance(BigDecimal.valueOf(-100));
+        var expectedBalance = new Balance(BigDecimal.ZERO);
         var withdrawAmount = new Amount(BigDecimal.valueOf(50));
+        var accountWithBalance100 = new Account(operationHistory, consoleStatementPrinter);
+        accountWithBalance100.deposit(new Amount(BigDecimal.valueOf(100)));
 
         // When
-        account.withdraw(withdrawAmount);
-        account.withdraw(withdrawAmount);
+        accountWithBalance100.withdraw(withdrawAmount);
+        accountWithBalance100.withdraw(withdrawAmount);
 
         // Then
-        assertThat(account.getBalance()).isEqualTo(expectedBalance);
+        assertThat(accountWithBalance100.getBalance()).isEqualTo(expectedBalance);
     }
 
     @Test
