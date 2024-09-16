@@ -19,6 +19,10 @@ public class Balance {
         return new Balance(this.value.subtract(amount.getValue()));
     }
 
+    public BigDecimal getValue() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

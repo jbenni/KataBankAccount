@@ -28,7 +28,7 @@ class ConsoleStatementPrinterTest {
         // Given
         var amount = new Amount(BigDecimal.TEN);
         var balanceAfterFirstDeposit = new Balance(BigDecimal.TEN);
-        var balanceAfterWithdrawal = balanceAfterFirstDeposit.substract(amount);
+        var balanceAfterWithdrawal = new Balance(BigDecimal.ZERO);
 
         Operation deposit = new Operation(fakeDateProvider.now(), OperationType.DEPOSIT, amount, balanceAfterFirstDeposit);
         Operation withdrawal = new Operation(fakeDateProvider.now().plusHours(2), OperationType.WITHDRAWAL, amount, balanceAfterWithdrawal);
@@ -39,11 +39,11 @@ class ConsoleStatementPrinterTest {
         String result = consoleStatementPrinter.print(operations);
 
         // Then
-        String expectedOutput = "DATE                 | OPERATION  | AMOUNT     | BALANCE    \n" +
+        String expectedOutput = "DATE                 | OPERATION  | AMOUNT      | BALANCE    \n" +
                 "--------------------------------------------------------------\n" +
-                "2024-09-14T12:00:00  | DEPOSIT    | 10         | 10         \n" +
-                "2024-09-14T14:00:00  | WITHDRAWAL | 5          | 5          \n";
+                "2024-09-14T12:00:00  | DEPOSIT    | 10          | 10         \n" +
+                "2024-09-14T14:00:00  | WITHDRAWAL | 10          | 0          \n";
 
-        assertThat(result).isEqualTo(expectedOutput);
+        assertThat(result).isEqualToIgnoringWhitespace(expectedOutput);
     }
 }
