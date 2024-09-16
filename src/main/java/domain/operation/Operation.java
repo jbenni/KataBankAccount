@@ -26,14 +26,6 @@ public class Operation {
         return operationType;
     }
 
-    public Amount getAmount() {
-        return amount;
-    }
-
-    public Balance getBalance() {
-        return balance;
-    }
-
     @Override
     public String toString() {
         return "Operation{" +

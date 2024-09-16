@@ -25,8 +25,4 @@ public class Balance {
         if (!(o instanceof Balance balance)) return false;
         return Objects.equals(value, balance.value);
     }
-
-    public BigDecimal getValue() {
-        return value;
-    }
 }
