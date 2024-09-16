@@ -2,6 +2,7 @@ package domain.account;
 
 import domain.Amount;
 import domain.Balance;
+import domain.exception.WithdrawNotAllowedException;
 import domain.operation.OperationHistory;
 import domain.operation.OperationType;
 import domain.statement.StatementPrinter;
@@ -26,6 +27,10 @@ public class Account {
     }
 
     public void withdraw(Amount amount) {
+        if(!isWithdrawAllowed(amount)) {
+            throw new WithdrawNotAllowedException("Withdraw amount must be less than account balance.");
+        }
+
         this.balance = this.balance.substract(amount);
         this.operationHistory.add(OperationType.WITHDRAWAL, amount, this.balance);
     }
@@ -40,5 +45,9 @@ public class Account {
 
     public String print() {
         return statementPrinter.print(operationHistory.getOperations());
+    }
+
+    private boolean isWithdrawAllowed(Amount amount) {
+        return balance.getValue().compareTo(amount.getValue()) >= 0;
     }
 }

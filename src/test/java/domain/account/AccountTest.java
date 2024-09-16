@@ -3,6 +3,7 @@ package domain.account;
 import domain.Amount;
 import domain.Balance;
 import domain.FakeDateProvider;
+import domain.exception.WithdrawNotAllowedException;
 import domain.operation.Operation;
 import domain.operation.OperationHistory;
 import domain.operation.OperationType;
@@ -15,6 +16,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.tuple;
 
 public class AccountTest {
@@ -94,6 +96,17 @@ public class AccountTest {
 
         // Then
         assertThat(account.getBalance()).isEqualTo(expectedBalance);
+    }
+
+    @Test
+    void should_throw_exception_when_withdraw_amount_greater_than_account_balance() {
+        // Given
+        var amount = new Amount(BigDecimal.TEN);
+
+        // When Then
+        assertThatThrownBy(() -> account.withdraw(amount))
+                .isInstanceOf(WithdrawNotAllowedException.class)
+                .hasMessage("Withdraw amount must be less than account balance.");
     }
 
     @Test
