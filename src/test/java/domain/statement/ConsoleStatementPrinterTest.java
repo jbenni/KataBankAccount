@@ -24,26 +24,26 @@ class ConsoleStatementPrinterTest {
     }
 
     @Test
-    void should_print_all_operations() {
+    void should_print_operations_correctly() {
         // Given
         var amount = new Amount(BigDecimal.TEN);
-
         var balanceAfterFirstDeposit = new Balance(BigDecimal.TEN);
-        var balanceAfterSecondDeposit = balanceAfterFirstDeposit.add(amount);
+        var balanceAfterWithdrawal = balanceAfterFirstDeposit.substract(amount);
 
-        var firstDeposit = new Operation(fakeDateProvider.now(), OperationType.DEPOSIT, amount, balanceAfterFirstDeposit);
-        var secondDeposit = new Operation(fakeDateProvider.now(), OperationType.DEPOSIT, amount, balanceAfterSecondDeposit);
+        Operation deposit = new Operation(fakeDateProvider.now(), OperationType.DEPOSIT, amount, balanceAfterFirstDeposit);
+        Operation withdrawal = new Operation(fakeDateProvider.now().plusHours(2), OperationType.WITHDRAWAL, amount, balanceAfterWithdrawal);
 
-        var operations = List.of(firstDeposit, secondDeposit);
-
-        StringBuilder sb = new StringBuilder();
-        operations.forEach(sb::append);
+        List<Operation> operations = List.of(deposit, withdrawal);
 
         // When
-        var actualPrint = consoleStatementPrinter.print(operations);
+        String result = consoleStatementPrinter.print(operations);
 
         // Then
-        assertThat(actualPrint).isEqualTo(sb.toString());
-    }
+        String expectedOutput = "DATE                 | OPERATION  | AMOUNT     | BALANCE    \n" +
+                "--------------------------------------------------------------\n" +
+                "2024-09-14T12:00:00  | DEPOSIT    | 10         | 10         \n" +
+                "2024-09-14T14:00:00  | WITHDRAWAL | 5          | 5          \n";
 
+        assertThat(result).isEqualTo(expectedOutput);
+    }
 }

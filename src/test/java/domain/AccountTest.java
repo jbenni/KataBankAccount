@@ -5,6 +5,7 @@ import domain.operation.Operation;
 import domain.operation.OperationHistory;
 import domain.operation.OperationType;
 import domain.statement.ConsoleStatementPrinter;
+import domain.statement.StatementPrinter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ public class AccountTest {
     private OperationHistory operationHistory;
     private FakeDateProvider fakeDateProvider;
     private Account account;
-    private ConsoleStatementPrinter consoleStatementPrinter;
+    private StatementPrinter consoleStatementPrinter;
     private static final LocalDateTime FIXED_LOCAL_DATE_TIME = LocalDateTime.of(2024, 9, 14, 12, 0);
 
     @BeforeEach
