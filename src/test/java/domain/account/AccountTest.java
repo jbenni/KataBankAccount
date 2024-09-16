@@ -1,6 +1,8 @@
-package domain;
+package domain.account;
 
-import domain.account.Account;
+import domain.Amount;
+import domain.Balance;
+import domain.FakeDateProvider;
 import domain.operation.Operation;
 import domain.operation.OperationHistory;
 import domain.operation.OperationType;
